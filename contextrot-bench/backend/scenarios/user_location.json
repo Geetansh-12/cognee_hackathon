@@ -1,0 +1,31 @@
+{
+    "id": "user_location",
+    "facts": [
+        {
+            "subject": "Alice",
+            "predicate": "lives in",
+            "value": "New York",
+            "timestamp": "2023-01-01"
+        },
+        {
+            "subject": "Alice",
+            "predicate": "lives in",
+            "value": "Chicago",
+            "timestamp": "2024-06-15",
+            "supersedes": "New York"
+        },
+        {
+            "subject": "Alice",
+            "predicate": "lives in",
+            "value": "Seattle",
+            "timestamp": "2025-09-20",
+            "supersedes": "Chicago"
+        }
+    ],
+    "eval_question": "Where does Alice currently live?",
+    "ground_truth_answer": "Seattle",
+    "stale_values": [
+        "New York",
+        "Chicago"
+    ]
+}

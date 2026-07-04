@@ -1,0 +1,39 @@
+{
+    "id": "software_version",
+    "facts": [
+        {
+            "subject": "My App",
+            "predicate": "version",
+            "value": "1.0.0",
+            "timestamp": "2024-01-01"
+        },
+        {
+            "subject": "My App",
+            "predicate": "version",
+            "value": "1.1.0",
+            "timestamp": "2024-03-15",
+            "supersedes": "1.0.0"
+        },
+        {
+            "subject": "My App",
+            "predicate": "version",
+            "value": "2.0.0",
+            "timestamp": "2025-01-10",
+            "supersedes": "1.1.0"
+        },
+        {
+            "subject": "My App",
+            "predicate": "version",
+            "value": "2.0.1",
+            "timestamp": "2025-02-01",
+            "supersedes": "2.0.0"
+        }
+    ],
+    "eval_question": "What is the current version of My App?",
+    "ground_truth_answer": "2.0.1",
+    "stale_values": [
+        "1.0.0",
+        "1.1.0",
+        "2.0.0"
+    ]
+}

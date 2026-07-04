@@ -1,0 +1,31 @@
+{
+    "id": "favorite_programming_language",
+    "facts": [
+        {
+            "subject": "Bob",
+            "predicate": "favorite programming language",
+            "value": "Java",
+            "timestamp": "2020-05-10"
+        },
+        {
+            "subject": "Bob",
+            "predicate": "favorite programming language",
+            "value": "Python",
+            "timestamp": "2022-11-22",
+            "supersedes": "Java"
+        },
+        {
+            "subject": "Bob",
+            "predicate": "favorite programming language",
+            "value": "Rust",
+            "timestamp": "2026-02-14",
+            "supersedes": "Python"
+        }
+    ],
+    "eval_question": "What is Bob's current favorite programming language?",
+    "ground_truth_answer": "Rust",
+    "stale_values": [
+        "Java",
+        "Python"
+    ]
+}

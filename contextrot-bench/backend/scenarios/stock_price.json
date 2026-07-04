@@ -1,0 +1,39 @@
+{
+    "id": "stock_price",
+    "facts": [
+        {
+            "subject": "AAPL",
+            "predicate": "stock price",
+            "value": "$150",
+            "timestamp": "2023-01-01"
+        },
+        {
+            "subject": "AAPL",
+            "predicate": "stock price",
+            "value": "$170",
+            "timestamp": "2023-06-01",
+            "supersedes": "$150"
+        },
+        {
+            "subject": "AAPL",
+            "predicate": "stock price",
+            "value": "$190",
+            "timestamp": "2024-01-01",
+            "supersedes": "$170"
+        },
+        {
+            "subject": "AAPL",
+            "predicate": "stock price",
+            "value": "$185",
+            "timestamp": "2024-03-01",
+            "supersedes": "$190"
+        }
+    ],
+    "eval_question": "What is the stock price of AAPL?",
+    "ground_truth_answer": "$185",
+    "stale_values": [
+        "$150",
+        "$170",
+        "$190"
+    ]
+}

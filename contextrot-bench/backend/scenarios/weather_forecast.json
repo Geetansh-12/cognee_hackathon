@@ -1,0 +1,31 @@
+{
+    "id": "weather_forecast",
+    "facts": [
+        {
+            "subject": "London",
+            "predicate": "weather tomorrow",
+            "value": "Sunny",
+            "timestamp": "08:00"
+        },
+        {
+            "subject": "London",
+            "predicate": "weather tomorrow",
+            "value": "Cloudy",
+            "timestamp": "12:00",
+            "supersedes": "Sunny"
+        },
+        {
+            "subject": "London",
+            "predicate": "weather tomorrow",
+            "value": "Rainy",
+            "timestamp": "18:00",
+            "supersedes": "Cloudy"
+        }
+    ],
+    "eval_question": "What is the weather forecast for London tomorrow?",
+    "ground_truth_answer": "Rainy",
+    "stale_values": [
+        "Sunny",
+        "Cloudy"
+    ]
+}

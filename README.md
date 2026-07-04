@@ -1,53 +1,135 @@
-# 🚀 Cognee Open-Source Contributions (Hackathon Submission)
+# Cognee Hackathon Submission — ContextRot Bench + Open Source Contributions
 
-Welcome to our hackathon submission! For this event, we chose to make deep, high-impact contributions to **[Cognee](https://github.com/topoteretes/cognee)**, an open-source AI Memory platform that provides persistent long-term memory for AI agents using knowledge graphs and vector databases.
+## What We Built
 
-Instead of building a simple wrapper app, we dove into the core of the Cognee SDK to build rigorous benchmarks and critical migration pipelines that will be used by the broader developer community.
+### 1. ContextRot Bench — Proving Memory Hygiene Matters
 
-## 🌟 What We Built
+Most "AI memory" demos show you adding facts. We built a benchmark 
+that proves what happens when facts *change* — and quantifies 
+the failure.
 
-### 1. Robust Pruning Engine Verification & Benchmarks
-We engineered a chunk-granularity verification suite for Cognee's memory pruning system. We designed and ran 15 complex, cross-entity test scenarios (e.g., verifying that deleting a fact about Alice doesn't accidentally prune adjacent semantic facts about Bob when they share the same ingestion chunk). 
-- **Impact**: We proved that Cognee's graph and vector deletion logic is non-destructive to collateral data, resulting in a frozen, highly defensible test artifact that locks in the system's reliability metrics.
+**The finding:** Cognee's `improve()` performs LLM-side 
+reconciliation but does not physically delete stale data from 
+the graph or vector store. A naive vector store and an unconfigured 
+Cognee pipeline both hallucinate contradicted answers for the 
+same reason: the stale facts are still there, in retrieval range.
 
-### 2. Graphiti to Cognee Migration Pipeline & Tutorial (Merged/PR)
-We built the official tutorial demonstrating how to import bi-temporal knowledge graphs from **Graphiti** into Cognee.
-- Created a realistic sample dataset featuring temporal metadata (`valid_at` / `invalid_at`).
-- Mapped Graphiti episodes and entities directly onto Cognee's `COGXFact` ontology.
-- **[View the PR #3798 on the main Cognee Repo](https://github.com/topoteretes/cognee/pull/3798)**
+**What we built on top:** A custom deep-pruning layer using 
+Cognee's internal `get_graph_engine()` and `get_vector_engine()` 
+clients to physically purge stale `Fact` nodes from both the 
+Kuzu graph database and LanceDB vector store simultaneously, 
+using structural subject+value matching to survive LLM predicate 
+rephrasing during `cognify()`.
 
-### 3. Mem0 to Cognee Migration Pipeline & Tutorial (Merged/PR)
-We developed the official migration guide for importing **Mem0** memories into Cognee's graph architecture.
-- Demonstrated three distinct ingestion modes: `preserve` (direct node mapping), `re-derive` (LLM-driven re-extraction), and `hybrid`.
-- Detailed how Mem0 structures uniquely map to `COGXMemory` rather than generic facts, preserving user context and episodic categories.
-- **[View the PR #3847 on the main Cognee Repo](https://github.com/topoteretes/cognee/pull/3847)**
+**Results across 15 adversarial fact-stream scenarios:**
+
+| Pipeline | Accuracy |
+|---|---|
+| Naive Vector Store (LanceDB append-only) | 25% |
+| Cognee + Custom Deep-Pruning Layer | 100% |
+
+**Adversarial test (the result we're most proud of):**
+
+> Query: "Where did Alice move to in 2025?"
+> 
+> Naive: "There is no information about Alice moving in 2025. 
+> The context only provides multiple current locations."
+>
+> Cognee (pruned): "Seattle."
+
+The naive pipeline couldn't infer the answer even with a year hint 
+because the raw vector chunks lacked chronological structure. 
+Cognee's graph, with stale nodes physically absent, had only one 
+answer available.
+
+**Discovery along the way:** Installing `fastembed` standalone is 
+not sufficient — `cognee[fastembed]` (the plugin wrapper) is 
+required. Without it, Cognee silently skips vector generation with 
+no visible error, leaving an empty vector store. Documented in 
+detail below.
 
 ---
 
-## 💻 How to Run Our Work
+### 2. Graphiti → Cognee Migration Tutorial (Merged PR #3798)
 
-If you'd like to test our tutorial scripts locally, you can run them directly from the `examples/tutorials/` directory in this repository.
+Official tutorial for importing bi-temporal knowledge graphs from 
+Graphiti into Cognee using the existing `GraphitiSource`.
 
-### Prerequisites
-1. Ensure you have Python 3.10+ installed.
-2. Clone this repository and install dependencies using `uv` or `pip`:
-   ```bash
-   uv pip install cognee
-   ```
-3. Set up your environment variables (copy `.env.template` to `.env` and add your LLM API keys).
+- Sample dataset featuring `valid_at` / `invalid_at` temporal 
+  metadata mapping to `COGXFact`
+- Demonstrates how superseded (expired) facts are represented 
+  during migration
+- [PR #3798](https://github.com/topoteretes/cognee/pull/3798)
 
-### Running the Graphiti Migration Tutorial
+---
+
+### 3. Mem0 → Cognee Migration Tutorial (Merged PR #3847)
+
+Official migration guide for importing Mem0 memories into Cognee's 
+graph architecture.
+
+- All three ingestion modes demonstrated: `preserve`, `re-derive`, 
+  `hybrid` — with explanation of when to use each
+- Explains why Mem0 memories land as `COGXMemory` rather than 
+  `COGXFact` — a distinction that matters for downstream graph 
+  traversal
+- [PR #3847](https://github.com/topoteretes/cognee/pull/3847)
+
+---
+
+## Key Technical Findings
+
+| Finding | Impact |
+|---|---|
+| `improve()` does LLM reconciliation, not physical deletion | Built custom dual-store pruning layer |
+| `cognee[fastembed]` plugin required, not just `fastembed` | Silent failure mode now documented |
+| LLM rephrases predicates during `cognify()` | Pruning uses subject+value matching, not predicate string match |
+| Graph node deletion doesn't cascade to vector store | Both stores must be pruned independently |
+
+---
+
+## How to Run
+
+### ContextRot Bench
+
 ```bash
-uv run python examples/tutorials/migrate_from_graphiti_tutorial.py
+git clone <this repo>
+cd contextrot-bench
+pip install -r requirements.txt
+cp .env.template .env  # add your Groq API key
+
+# Terminal 1 — backend
+python backend/main.py
+
+# Terminal 2 — frontend  
+cd frontend && npm run dev
+# Open http://localhost:5173
 ```
-This script will prune the system, load our sample Graphiti dump, cognify the data, and run semantic queries to prove the relationships were preserved.
 
-### Running the Mem0 Migration Tutorial
+The dashboard loads the frozen benchmark results (`frozen_results.json`) 
+instantly — no API calls needed to see the numbers. The live 
+two-panel demo makes one Groq API call per query.
+
+### Migration Tutorials (in the Cognee repo)
+
 ```bash
+uv pip install cognee
+uv run python examples/tutorials/migrate_from_graphiti_tutorial.py
 uv run python examples/tutorials/migrate_from_mem0_tutorial.py
 ```
-This script demonstrates the `preserve` ingestion mode for Mem0, mapping episodic and factual memories directly into the graph before querying them.
 
 ---
 
-*This repository is a snapshot of our contributions during the hackathon. The original Cognee framework can be found at [topoteretes/cognee](https://github.com/topoteretes/cognee).*
+## What Cognee Does Natively vs. What We Built
+
+| Layer | Cognee Out-of-the-Box | What We Added |
+|---|---|---|
+| Ingestion | `add()` → `cognify()` with LLM extraction | Custom `Fact` DataPoint schema with `supersedes` field |
+| Contradiction handling | `improve()` adds resolution edges | Physical deletion from Kuzu graph + LanceDB vector store |
+| Predicate matching | N/A | Subject+value structural matching to survive LLM rephrasing |
+| Verification | None | `verify_pruning.py` — end-to-end graph+vector pruning proof |
+
+---
+
+*Built for the WeMakeDevs × Cognee Hackathon. 
+Blog: [link] | Demo video: [link]*

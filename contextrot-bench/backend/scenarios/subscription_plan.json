@@ -1,0 +1,31 @@
+{
+    "id": "subscription_plan",
+    "facts": [
+        {
+            "subject": "User123",
+            "predicate": "subscription plan",
+            "value": "Free",
+            "timestamp": "2026-01-01"
+        },
+        {
+            "subject": "User123",
+            "predicate": "subscription plan",
+            "value": "Pro",
+            "timestamp": "2026-02-01",
+            "supersedes": "Free"
+        },
+        {
+            "subject": "User123",
+            "predicate": "subscription plan",
+            "value": "Enterprise",
+            "timestamp": "2026-03-01",
+            "supersedes": "Pro"
+        }
+    ],
+    "eval_question": "What subscription plan is User123 on?",
+    "ground_truth_answer": "Enterprise",
+    "stale_values": [
+        "Free",
+        "Pro"
+    ]
+}

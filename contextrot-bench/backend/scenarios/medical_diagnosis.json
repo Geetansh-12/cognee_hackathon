@@ -1,0 +1,31 @@
+{
+    "id": "medical_diagnosis",
+    "facts": [
+        {
+            "subject": "Patient 404",
+            "predicate": "diagnosis",
+            "value": "Common Cold",
+            "timestamp": "2026-01-01"
+        },
+        {
+            "subject": "Patient 404",
+            "predicate": "diagnosis",
+            "value": "Flu",
+            "timestamp": "2026-01-03",
+            "supersedes": "Common Cold"
+        },
+        {
+            "subject": "Patient 404",
+            "predicate": "diagnosis",
+            "value": "Pneumonia",
+            "timestamp": "2026-01-10",
+            "supersedes": "Flu"
+        }
+    ],
+    "eval_question": "What is the diagnosis for Patient 404?",
+    "ground_truth_answer": "Pneumonia",
+    "stale_values": [
+        "Common Cold",
+        "Flu"
+    ]
+}

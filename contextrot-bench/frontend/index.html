@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ContextRot Bench - Results Dashboard</title>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface": "rgba(var(--surface), <alpha-value>)",
+                      "surface-variant": "rgba(var(--surface-variant), <alpha-value>)",
+                      "surface-container-high": "rgba(var(--surface-container-high), <alpha-value>)",
+                      "surface-container-low": "rgba(var(--surface-container-low), <alpha-value>)",
+                      "on-surface": "rgba(var(--on-surface), <alpha-value>)",
+                      "on-surface-variant": "rgba(var(--on-surface-variant), <alpha-value>)",
+                      "primary": "rgba(var(--primary), <alpha-value>)",
+                      "on-primary": "rgba(var(--on-primary), <alpha-value>)",
+                      "error": "rgba(var(--error), <alpha-value>)",
+                      "on-error": "rgba(var(--on-error), <alpha-value>)",
+                      "glass": "rgba(var(--glass-color), <alpha-value>)"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "unit": "4px",
+                      "container-max": "1440px",
+                      "margin-page": "40px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Playfair Display"],
+                      "data-mono": ["Space Mono"],
+                      "body-md": ["IBM Plex Sans"],
+                      "label-caps": ["Space Mono"],
+                      "headline-md": ["Playfair Display"],
+                      "body-lg": ["IBM Plex Sans"]
+              },
+              "fontSize": {
+                      "headline-lg": ["48px", {"lineHeight": "1.1","letterSpacing": "-0.02em","fontWeight": "700"}],
+                      "data-mono": ["14px", {"lineHeight": "1.4","fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "1.6","fontWeight": "400"}],
+                      "label-caps": ["12px", {"lineHeight": "1.0","letterSpacing": "0.1em","fontWeight": "700"}],
+                      "headline-md": ["32px", {"lineHeight": "1.2","fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6","fontWeight": "400"}]
+              }
+            }
+          }
+        }
+    </script>
+    <style>
+        :root {
+            --surface: 255, 255, 255;
+            --surface-variant: 243, 244, 246;
+            --surface-container-high: 249, 250, 251;
+            --surface-container-low: 248, 249, 250;
+            --on-surface: 17, 24, 39;
+            --on-surface-variant: 75, 85, 99;
+            --primary: 16, 185, 129;
+            --on-primary: 255, 255, 255;
+            --error: 239, 68, 68;
+            --on-error: 255, 255, 255;
+            --glass-color: 0, 0, 0;
+            background-color: rgb(243, 244, 246);
+        }
+        .dark {
+            --surface: 19, 19, 24;
+            --surface-variant: 53, 52, 58;
+            --surface-container-high: 42, 41, 47;
+            --surface-container-low: 27, 27, 32;
+            --on-surface: 228, 225, 233;
+            --on-surface-variant: 187, 202, 191;
+            --primary: 78, 222, 163;
+            --on-primary: 0, 56, 36;
+            --error: 255, 180, 171;
+            --on-error: 105, 0, 5;
+            --glass-color: 255, 255, 255;
+            background-color: rgb(19, 19, 24);
+        }
+
+        body { transition: background-color 0.3s ease; }
+        
+        .glass-panel {
+            background-color: rgba(var(--glass-color), 0.05);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(var(--glass-color), 0.1);
+            transition: all 0.3s ease;
+        }
+        .progress-ring {
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        .progress-ring-circle {
+            transition: stroke-dashoffset 1.5s ease-in-out;
+        }
+        .glow-red {
+            box-shadow: 0 0 20px rgba(255, 179, 173, 0.15);
+        }
+        .glow-red:hover {
+            box-shadow: 0 0 30px rgba(248, 113, 113, 0.2);
+        }
+        .glow-green {
+            box-shadow: 0 0 20px rgba(78, 222, 163, 0.15);
+        }
+        .glow-green:hover {
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.2);
+        }
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+  </head>
+  <body class="text-on-surface bg-surface-variant font-body-md min-h-screen pt-24 pb-16 relative transition-colors duration-300">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+{
+    "id": "flight_status",
+    "facts": [
+        {
+            "subject": "Flight AA100",
+            "predicate": "status",
+            "value": "On Time",
+            "timestamp": "09:00"
+        },
+        {
+            "subject": "Flight AA100",
+            "predicate": "status",
+            "value": "Delayed 1h",
+            "timestamp": "10:30",
+            "supersedes": "On Time"
+        },
+        {
+            "subject": "Flight AA100",
+            "predicate": "status",
+            "value": "Cancelled",
+            "timestamp": "11:45",
+            "supersedes": "Delayed 1h"
+        }
+    ],
+    "eval_question": "What is the status of Flight AA100?",
+    "ground_truth_answer": "Cancelled",
+    "stale_values": [
+        "On Time",
+        "Delayed 1h"
+    ]
+}

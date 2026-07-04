@@ -1,0 +1,31 @@
+{
+    "id": "ceo_of_company",
+    "facts": [
+        {
+            "subject": "Acme Corp",
+            "predicate": "CEO",
+            "value": "John Doe",
+            "timestamp": "2015-01-01"
+        },
+        {
+            "subject": "Acme Corp",
+            "predicate": "CEO",
+            "value": "Jane Smith",
+            "timestamp": "2020-05-10",
+            "supersedes": "John Doe"
+        },
+        {
+            "subject": "Acme Corp",
+            "predicate": "CEO",
+            "value": "Alan Turing",
+            "timestamp": "2026-01-01",
+            "supersedes": "Jane Smith"
+        }
+    ],
+    "eval_question": "Who is the CEO of Acme Corp?",
+    "ground_truth_answer": "Alan Turing",
+    "stale_values": [
+        "John Doe",
+        "Jane Smith"
+    ]
+}

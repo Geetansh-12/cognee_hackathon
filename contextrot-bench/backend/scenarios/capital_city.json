@@ -1,0 +1,31 @@
+{
+    "id": "capital_city",
+    "facts": [
+        {
+            "subject": "Nation X",
+            "predicate": "capital",
+            "value": "Old City",
+            "timestamp": "1900-01-01"
+        },
+        {
+            "subject": "Nation X",
+            "predicate": "capital",
+            "value": "New City",
+            "timestamp": "1950-01-01",
+            "supersedes": "Old City"
+        },
+        {
+            "subject": "Nation X",
+            "predicate": "capital",
+            "value": "Future City",
+            "timestamp": "2050-01-01",
+            "supersedes": "New City"
+        }
+    ],
+    "eval_question": "What is the capital of Nation X?",
+    "ground_truth_answer": "Future City",
+    "stale_values": [
+        "Old City",
+        "New City"
+    ]
+}

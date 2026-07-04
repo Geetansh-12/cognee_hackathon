@@ -1,0 +1,31 @@
+{
+    "id": "dietary_preference",
+    "facts": [
+        {
+            "subject": "Eve",
+            "predicate": "diet",
+            "value": "Omnivore",
+            "timestamp": "2010-01-01"
+        },
+        {
+            "subject": "Eve",
+            "predicate": "diet",
+            "value": "Vegetarian",
+            "timestamp": "2015-05-01",
+            "supersedes": "Omnivore"
+        },
+        {
+            "subject": "Eve",
+            "predicate": "diet",
+            "value": "Vegan",
+            "timestamp": "2020-01-01",
+            "supersedes": "Vegetarian"
+        }
+    ],
+    "eval_question": "What is Eve's diet?",
+    "ground_truth_answer": "Vegan",
+    "stale_values": [
+        "Omnivore",
+        "Vegetarian"
+    ]
+}

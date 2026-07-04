@@ -1,0 +1,39 @@
+{
+    "id": "job_search_google",
+    "facts": [
+        {
+            "subject": "Google SWE Internship",
+            "predicate": "status",
+            "value": "Applied",
+            "timestamp": "2026-05-01"
+        },
+        {
+            "subject": "Google SWE Internship",
+            "predicate": "status",
+            "value": "OA invite received",
+            "timestamp": "2026-05-05",
+            "supersedes": "Applied"
+        },
+        {
+            "subject": "Google SWE Internship",
+            "predicate": "status",
+            "value": "Interview completed",
+            "timestamp": "2026-05-12",
+            "supersedes": "OA invite received"
+        },
+        {
+            "subject": "Google SWE Internship",
+            "predicate": "status",
+            "value": "Rejected",
+            "timestamp": "2026-05-20",
+            "supersedes": "Interview completed"
+        }
+    ],
+    "eval_question": "What is the current status of the Google SWE Internship application?",
+    "ground_truth_answer": "Rejected",
+    "stale_values": [
+        "Applied",
+        "OA invite",
+        "Interview completed"
+    ]
+}

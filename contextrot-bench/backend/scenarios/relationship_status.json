@@ -1,0 +1,39 @@
+{
+    "id": "relationship_status",
+    "facts": [
+        {
+            "subject": "Diana",
+            "predicate": "relationship status",
+            "value": "Single",
+            "timestamp": "2019-02-14"
+        },
+        {
+            "subject": "Diana",
+            "predicate": "relationship status",
+            "value": "In a relationship",
+            "timestamp": "2021-06-01",
+            "supersedes": "Single"
+        },
+        {
+            "subject": "Diana",
+            "predicate": "relationship status",
+            "value": "Engaged",
+            "timestamp": "2024-12-25",
+            "supersedes": "In a relationship"
+        },
+        {
+            "subject": "Diana",
+            "predicate": "relationship status",
+            "value": "Married",
+            "timestamp": "2026-05-10",
+            "supersedes": "Engaged"
+        }
+    ],
+    "eval_question": "What is Diana's relationship status?",
+    "ground_truth_answer": "Married",
+    "stale_values": [
+        "Single",
+        "In a relationship",
+        "Engaged"
+    ]
+}
