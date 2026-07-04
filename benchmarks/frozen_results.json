@@ -1,0 +1,187 @@
+{
+    "total": 15,
+    "naive_score": 0,
+    "cognee_score": 15,
+    "results": [
+        {
+            "id": "capital_city",
+            "ground_truth": "Future City",
+            "naive": {
+                "answer": "Old City",
+                "correct": false
+            },
+            "cognee": {
+                "answer": "Future City",
+                "correct": true
+            }
+        },
+        {
+            "id": "car_ownership",
+            "ground_truth": "Tesla Model 3",
+            "naive": {
+                "answer": "Honda Civic",
+                "correct": false
+            },
+            "cognee": {
+                "answer": "Tesla Model 3",
+                "correct": true
+            }
+        },
+        {
+            "id": "ceo_of_company",
+            "ground_truth": "Alan Turing",
+            "naive": {
+                "answer": "John Doe",
+                "correct": false
+            },
+            "cognee": {
+                "answer": "Alan Turing",
+                "correct": true
+            }
+        },
+        {
+            "id": "dietary_preference",
+            "ground_truth": "Vegan",
+            "naive": {
+                "answer": "Omnivore",
+                "correct": false
+            },
+            "cognee": {
+                "answer": "Vegan",
+                "correct": true
+            }
+        },
+        {
+            "id": "favorite_programming_language",
+            "ground_truth": "Rust",
+            "naive": {
+                "answer": "Java",
+                "correct": false
+            },
+            "cognee": {
+                "answer": "Rust",
+                "correct": true
+            }
+        },
+        {
+            "id": "flight_status",
+            "ground_truth": "Cancelled",
+            "naive": {
+                "answer": "On Time",
+                "correct": false
+            },
+            "cognee": {
+                "answer": "Cancelled",
+                "correct": true
+            }
+        },
+        {
+            "id": "job_search_google",
+            "ground_truth": "Rejected",
+            "naive": {
+                "answer": "Applied",
+                "correct": false
+            },
+            "cognee": {
+                "answer": "Rejected",
+                "correct": true
+            }
+        },
+        {
+            "id": "medical_diagnosis",
+            "ground_truth": "Pneumonia",
+            "naive": {
+                "answer": "Common Cold",
+                "correct": false
+            },
+            "cognee": {
+                "answer": "Pneumonia",
+                "correct": true
+            }
+        },
+        {
+            "id": "project_deadline",
+            "ground_truth": "Q1 2027",
+            "naive": {
+                "answer": "Q3 2026",
+                "correct": false
+            },
+            "cognee": {
+                "answer": "Q1 2027",
+                "correct": true
+            }
+        },
+        {
+            "id": "relationship_status",
+            "ground_truth": "Married",
+            "naive": {
+                "answer": "Single",
+                "correct": false
+            },
+            "cognee": {
+                "answer": "Married",
+                "correct": true
+            }
+        },
+        {
+            "id": "software_version",
+            "ground_truth": "2.0.1",
+            "naive": {
+                "answer": "1.0.0",
+                "correct": false
+            },
+            "cognee": {
+                "answer": "2.0.1",
+                "correct": true
+            }
+        },
+        {
+            "id": "stock_price",
+            "ground_truth": "$185",
+            "naive": {
+                "answer": "$150",
+                "correct": false
+            },
+            "cognee": {
+                "answer": "$185",
+                "correct": true
+            }
+        },
+        {
+            "id": "subscription_plan",
+            "ground_truth": "Enterprise",
+            "naive": {
+                "answer": "Free",
+                "correct": false
+            },
+            "cognee": {
+                "answer": "Enterprise",
+                "correct": true
+            }
+        },
+        {
+            "id": "user_location",
+            "ground_truth": "Seattle",
+            "naive": {
+                "answer": "New York",
+                "correct": false
+            },
+            "cognee": {
+                "answer": "Seattle",
+                "correct": true
+            }
+        },
+        {
+            "id": "weather_forecast",
+            "ground_truth": "Rainy",
+            "naive": {
+                "answer": "Sunny",
+                "correct": false
+            },
+            "cognee": {
+                "answer": "Rainy",
+                "correct": true
+            }
+        }
+    ]
+}
