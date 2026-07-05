@@ -132,4 +132,4 @@ uv run python examples/tutorials/migrate_from_mem0_tutorial.py
 ---
 
 *Built for the WeMakeDevs × Cognee Hackathon. 
-Blog: [Add your Blog Link Here] | Demo video: [ContextRot-Bench Demo on YouTube](https://youtu.be/FW6hriWAz40?si=oAQuVVhegkSAwJ4F)*
+Blog: [Read the Blog Post on Dev.to](https://dev.to/geetansh_vikram_836d7f761/i-had-never-heard-of-cognee-then-i-spent-5-days-breaking-it-wide-open-4j0j) | Demo video: [ContextRot-Bench Demo on YouTube](https://youtu.be/FW6hriWAz40?si=oAQuVVhegkSAwJ4F)*
