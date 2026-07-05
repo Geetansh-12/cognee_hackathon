@@ -1,8 +1,15 @@
-import asyncio
 import os
+from dotenv import load_dotenv
+
+load_dotenv(override=True)
+os.environ["LLM_MODEL"] = "groq/llama-3.3-70b-versatile"
+os.environ["LLM_PROVIDER"] = "custom"
+
+import asyncio
 import shutil
 import json
 import cognee
+
 from backend.pipeline_cognee import _pipeline
 from cognee.infrastructure.databases.graph.get_graph_engine import get_graph_engine
 import lancedb

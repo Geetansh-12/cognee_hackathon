@@ -25,9 +25,9 @@ function App() {
   const threeRef = useRef(null);
 
   const liveFacts = [
-    { subject: "USER", predicate: "location", value: "New York", timestamp: "2023-01-01" },
-    { subject: "USER", predicate: "location", value: "Chicago", timestamp: "2024-06-15", supersedes: "New York" },
-    { subject: "USER", predicate: "location", value: "Seattle", timestamp: "2025-09-20", supersedes: "Chicago" }
+    { subject: "Alice", predicate: "lives in", value: "New York", timestamp: "2023-01-01" },
+    { subject: "Alice", predicate: "lives in", value: "Chicago", timestamp: "2024-06-15", supersedes: "New York" },
+    { subject: "Alice", predicate: "lives in", value: "Seattle", timestamp: "2025-09-20", supersedes: "Chicago" }
   ];
 
   const handleDemoRun = async () => {

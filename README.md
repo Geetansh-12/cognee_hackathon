@@ -25,7 +25,7 @@ rephrasing during `cognify()`.
 
 | Pipeline | Accuracy |
 |---|---|
-| Naive Vector Store (LanceDB append-only) | 25% |
+| Naive Vector Store (LanceDB append-only) | 0% |
 | Cognee + Custom Deep-Pruning Layer | 100% |
 
 **Adversarial test (the result we're most proud of):**
@@ -50,7 +50,7 @@ detail below.
 
 ---
 
-### 2. Graphiti → Cognee Migration Tutorial (Merged PR #3798)
+### 2. Graphiti → Cognee Migration Tutorial (Submitted PR #3798)
 
 Official tutorial for importing bi-temporal knowledge graphs from 
 Graphiti into Cognee using the existing `GraphitiSource`.
@@ -59,11 +59,11 @@ Graphiti into Cognee using the existing `GraphitiSource`.
   metadata mapping to `COGXFact`
 - Demonstrates how superseded (expired) facts are represented 
   during migration
-- [PR #3798](https://github.com/topoteretes/cognee/pull/3798)
+- [Submitted PR #3798](https://github.com/topoteretes/cognee/pull/3798)
 
 ---
 
-### 3. Mem0 → Cognee Migration Tutorial (Merged PR #3847)
+### 3. Mem0 → Cognee Migration Tutorial (Submitted PR #3847)
 
 Official migration guide for importing Mem0 memories into Cognee's 
 graph architecture.
@@ -73,7 +73,7 @@ graph architecture.
 - Explains why Mem0 memories land as `COGXMemory` rather than 
   `COGXFact` — a distinction that matters for downstream graph 
   traversal
-- [PR #3847](https://github.com/topoteretes/cognee/pull/3847)
+- [Submitted PR #3847](https://github.com/topoteretes/cognee/pull/3847)
 
 ---
 
@@ -93,7 +93,7 @@ graph architecture.
 ### ContextRot Bench
 
 ```bash
-git clone <this repo>
+git clone https://github.com/Geetansh-12/cognee_hackathon.git
 cd contextrot-bench
 pip install -r requirements.txt
 cp .env.template .env  # add your Groq API key
@@ -132,4 +132,4 @@ uv run python examples/tutorials/migrate_from_mem0_tutorial.py
 ---
 
 *Built for the WeMakeDevs × Cognee Hackathon. 
-Blog: [link] | Demo video: [link]*
+Blog: [Add your Blog Link Here] | Demo video: [ContextRot-Bench Demo on YouTube](https://youtu.be/FW6hriWAz40?si=oAQuVVhegkSAwJ4F)*
